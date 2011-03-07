@@ -9,6 +9,9 @@ def visit_page(fid,page_type="fid"):
     a_link="http://bbs.ngacn.cc/thread.php?%s=%s" %(page_type,fid)
     pass
 
+def preview_page():
+    pass
+
 def home():
     opener = build_opener()
     url = 'http://bbs.ngacn.cc/'
