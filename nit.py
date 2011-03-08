@@ -22,7 +22,6 @@ def show(fid,page_type="fid"):
     else :
         a_link='http://bbs.ngacn.cc/read.php?tid=%s' %fid
         try:
-            print "start"
             page=opener.open(a_link).read().decode('gbk').encode('utf-8') 
             contents = re.findall(r'<span.id=.postcontent.*?</span>',page)
             for i in contents:
