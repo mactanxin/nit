@@ -10,8 +10,7 @@ def show(fid,page_type="fid"):
     if page_type == "fid":
         a_link="http://bbs.ngacn.cc/thread.php?fid=%s" %fid
         try:
-            page=opener.open(a_link).read()
-            page=page.decode('gbk').encode('utf-8') 
+            page=opener.open(a_link).read().decode('gbk').encode('utf-8')
             links=re.findall(r'<a href=.read\.php\?tid=\d{7}\&\_fp=1.\s+id.*</a>', page)
             for i in links:
                 i = re.findall(r'tid=(\d+).*>(.*)</a>',i)
@@ -24,7 +23,8 @@ def show(fid,page_type="fid"):
         a_link='http://bbs.ngacn.cc/read.php?tid=%s' %fid
         try:
             print "start"
-            page=opener.open(a_link).read() 
+            page=opener.open(a_link).read().decode('gbk').encode('utf-8') 
+            contents = re.findall(r'<span.id=.postcontent.*?</span>',page)
             for i in contents:
                 i = i.replace('<span id=\'',"").replace("</span>","").replace("\' class='postcontent ubbcode\'","").replace("<br/>","|")
                 k = re.sub(r'\[.*\]','',i)       
