@@ -5,10 +5,15 @@ import re
 from urllib2 import build_opener
 import random
 
-def visit_page(fid,page_type="fid"):
-    a_link="http://bbs.ngacn.cc/thread.php?%s=%s" %(page_type,fid)
+def show_list(fid,page_type="fid"):
+    if page_type == "fid":
+        a_link="http://bbs.ngacn.cc/thread.php?fid=%s" %fid
+    else:
+        a_link='http://bbs.ngacn.cc/read.php?tid=%s' %fid
+    try:
+        opener = build_opener()
+        page=opener.open(a_link).read()        
     pass
-
 def preview_page():
     pass
 
