@@ -5,14 +5,21 @@ import re
 from urllib2 import build_opener
 import random
 
-def show_list(fid,page_type="fid"):
+def show(fid,page_type="fid"):
+    opener = build_opener()
     if page_type == "fid":
         a_link="http://bbs.ngacn.cc/thread.php?fid=%s" %fid
+        try:
+            page=opener.open(a_link).read()  
+            links=re.findall(r'<a href=.read\.php\?tid=\d{7}\&\_fp=1.\s+id.*</a>', html)
+            for i in links:
+                i = re.findall(r'tid=(\d+).*>(.*)</a>',i)
+                data=i[0]
+                print "%s|%s" %(data[0],data[1])
     else:
         a_link='http://bbs.ngacn.cc/read.php?tid=%s' %fid
-    try:
-        opener = build_opener()
-        page=opener.open(a_link).read()        
+        try:
+            page=opener.open(a_link).read()        
     pass
 def preview_page():
     pass
