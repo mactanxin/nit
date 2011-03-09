@@ -3,6 +3,7 @@
 import os,sys
 import re
 from urllib2 import build_opener
+import urllib2
 import random
 
 def show(fid,page_type="fid"):
@@ -16,9 +17,13 @@ def show(fid,page_type="fid"):
                 i = re.findall(r'tid=(\d+).*>(.*)</a>',i)
                 data=i[0]
                 print "%s|%s" %(data[0],data[1])
-        except:
-            print "error"
-            pass        
+        except ValueError:
+            print " value error"
+            raise
+        except urllib2.HTTPError:
+            # print ""  
+            raise     
+                    
     else :
         a_link='http://bbs.ngacn.cc/read.php?tid=%s' %fid
         try:
@@ -28,9 +33,9 @@ def show(fid,page_type="fid"):
                 i = i.replace('<span id=\'',"").replace("</span>","").replace("\' class='postcontent ubbcode\'","").replace("<br/>","|")
                 k = re.sub(r'\[.*\]','',i)       
                 print k
-        except:
+        except ValueError:
             print "error"
-            pass        
+            # raise       
 def preview_page():
     pass
 
