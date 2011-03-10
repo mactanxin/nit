@@ -43,11 +43,11 @@ def home():
     opener = build_opener()
     url = 'http://bbs.ngacn.cc/'
     page = opener.open(url).read().decode('gbk').encode('utf-8')
-    links = re.findall(r'<a href=.thread.*?</a>', page)
+    links = re.findall(r"<a href='thread\.php\?fid=(.*?)'>(.*?)</a>",page)
     for i in links:
-        data = re.findall(r"<a href='thread\.php\?(fid=.*?)'>(.*?)</a>",i)[0]
+        # data = re.findall(r"<a href='thread\.php\?fid=(.*?)'>(.*?)</a>",i)[0]
         a=random.randint(1000000000,9999999999)
-        print "%s|%s|%d"%(data[0],data[1],a)
+        print "%s|%s|%d"%(i[0],i[1],a)
 
 if __name__ == '__main__' :
     home()
