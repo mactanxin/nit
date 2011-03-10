@@ -42,16 +42,12 @@ def preview_page():
 def home():
     opener = build_opener()
     url = 'http://bbs.ngacn.cc/'
-    page = opener.open(url).read()
+    page = opener.open(url).read().decode('gbk').encode('utf-8')
     links = re.findall(r'<a href=.thread.*?</a>', page)
     for i in links:
-        i=i.replace('a href=\'thread.php?','').replace('</a>','').replace('<','').replace('>','').decode('gbk').encode('utf-8')
-        data = i.split('\'')
-        # i = re.findall(r'fid=(\d+).*>(.*)</a>',i)
+        data = re.findall(r"<a href='thread\.php\?(fid=.*?)'>(.*?)</a>",i)[0]
         a=random.randint(1000000000,9999999999)
         print "%s|%s|%d"%(data[0],data[1],a)
-# print '\n'.join(links)
-# print links
 
 if __name__ == '__main__' :
     home()
