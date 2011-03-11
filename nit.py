@@ -26,11 +26,9 @@ def show_page(fid):
     a_link='http://bbs.ngacn.cc/read.php?tid=%s' %fid
     try:
         page=opener.open(a_link).read().decode('gbk').encode('utf-8') 
-        contents = re.findall(r'<span.id=.postcontent.*?</span>',page)
+        contents = re.findall(r"<span\s+id=.(postcontent\d)'\s+class=\'postcontent ubbcode\'>(.*?)</span>",page)
         for i in contents:
-            i = i.replace('<span id=\'',"").replace("</span>","").replace("\' class='postcontent ubbcode\'","").replace("<br/>","|")
-            k = re.sub(r'\[.*\]','',i)       
-            print k
+            print "%s|%s" %(i[0],i[1])
     except ValueError:
         print "error"
         # raise       
