@@ -5,6 +5,15 @@ import re
 from urllib2 import build_opener
 import urllib2
 import random
+import time
+
+
+def usage():
+    '''
+    使用方法
+    '''
+    how_to_use="使用方法:\nhome()方法展示主页\nshow_list()方法展示指定版块"
+    print how_to_use
 
 def show_list(fid):
     opener = build_opener()
@@ -45,4 +54,6 @@ def home():
         print "%s|%s|%d"%(i[0],i[1],a)
 
 if __name__ == '__main__' :
+    usage()
+    time.sleep(5)
     home()
