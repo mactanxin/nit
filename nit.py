@@ -12,11 +12,9 @@ def show(fid,page_type="fid"):
         a_link="http://bbs.ngacn.cc/thread.php?fid=%s" %fid
         try:
             page=opener.open(a_link).read().decode('gbk').encode('utf-8')
-            links=re.findall(r'<a href=.read\.php\?tid=\d{7}\&\_fp=1.\s+id.*</a>', page)
+            links = re.findall(r"<a href=.read\.php\?tid=(\d{7})\&\_fp=1.\s+id.*>(.*?)</a>",page)
             for i in links:
-                i = re.findall(r'tid=(\d+).*>(.*)</a>',i)
-                data=i[0]
-                print "%s|%s" %(data[0],data[1])
+                print "%s|%s" %(i[0],i[1])
         except ValueError:
             print " value error"
             raise
@@ -45,7 +43,6 @@ def home():
     page = opener.open(url).read().decode('gbk').encode('utf-8')
     links = re.findall(r"<a href='thread\.php\?fid=(.*?)'>(.*?)</a>",page)
     for i in links:
-        # data = re.findall(r"<a href='thread\.php\?fid=(.*?)'>(.*?)</a>",i)[0]
         a=random.randint(1000000000,9999999999)
         print "%s|%s|%d"%(i[0],i[1],a)
 
